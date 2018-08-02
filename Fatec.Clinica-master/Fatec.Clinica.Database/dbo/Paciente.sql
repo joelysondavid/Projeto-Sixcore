@@ -1,0 +1,9 @@
+
+CREATE TABLE [dbo].[Paciente]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+    [Nome] VARCHAR(100) NOT NULL, 
+    [CPF] VARCHAR(11) NOT NULL, 
+    [Historico] VARCHAR(500) NOT NULL,
+	[Nascimento] VARCHAR(10) NOT NULL
+)
