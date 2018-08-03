@@ -1,0 +1,51 @@
+﻿CREATE TABLE LOGIN_TB(
+ID INTEGER PRIMARY KEY NOT NULL,
+NOME VARCHAR(150) NOT NULL,
+EMAIL VARCHAR(100) NOT NULL,
+SENHA VARCHAR(150) NOT NULL,
+TIPO_ACESSO VARCHAR(20) NOT NULL
+
+)
+
+
+GO
+
+
+CREATE TABLE Paciente
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+    [Nome] VARCHAR(100) NOT NULL, 
+    [CPF] VARCHAR(11) NOT NULL, 
+    [Historico] VARCHAR(500) NOT NULL,
+	[Nascimento] VARCHAR(10) NOT NULL
+)
+go 
+
+CREATE TABLE Medico
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+	[IdEspecialidade] INT NOT NULL,
+    [Nome] VARCHAR(100) NOT NULL, 
+    [CPF] VARCHAR(11) NOT NULL, 
+    [CRM] VARCHAR(10) NOT NULL, 
+    CONSTRAINT [FK_Medico_Especialidade] FOREIGN KEY (IdEspecialidade) REFERENCES [Especialidade]([Id])
+)
+go
+
+
+CREATE TABLE Especialidade
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+	[Nome] VARCHAR(50) NOT NULL
+)
+
+CREATE TABLE Consulta
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+	[IdPaciente] INT NOT NULL,
+	[IdMedico] INT NOT NULL,
+	[IdEspecialidade] INT NOT NULL,
+	CONSTRAINT [FK_Consulta_Paciente] FOREIGN KEY (IdPaciente) REFERENCES [Paciente]([Id]),
+	CONSTRAINT [FK_Consulta_Medico] FOREIGN KEY (IdMedico) REFERENCES [Medico]([Id]),
+	CONSTRAINT [FK_Consulta_Especialidade] FOREIGN KEY (IdEspecialidade) REFERENCES [Especialidade]([Id])
+)
