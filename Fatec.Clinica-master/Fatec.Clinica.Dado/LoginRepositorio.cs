@@ -48,13 +48,13 @@ namespace Fatec.Clinica.Dado
         /// </summary>
         /// <param name="email"></param>
         /// <returns></returns>
-        public Login SelecionarPorEmail(string email)
+        public LoginDto SelecionarPorEmail(string email)
         {
             using (var connection = new SqlConnection(DbConnectionFactory.SQLConnectionString))
             {
-                var obj = connection.QueryFirstOrDefault<Login>($"SELECT * " +
+                var obj = connection.QueryFirstOrDefault<LoginDto>($"SELECT * " +
                                                                   $"FROM [LOGIN_TB] " +
-                                                                  $"WHERE EMAIL = {email}");
+                                                                  $"WHERE EMAIL = '{email}'");
                 return obj;
             }
         }

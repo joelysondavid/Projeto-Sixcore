@@ -13,7 +13,7 @@ namespace Fatec.Clinica.Api.Controllers
     /// </summary>
 
     [Produces("application/json")]
-    [Route("api/Medico")]
+    [Route("api/Login")]
     public class LoginController : Controller
     {
         /// <summary>
