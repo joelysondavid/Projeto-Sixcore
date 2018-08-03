@@ -1,14 +1,14 @@
 var api = 'http://localhost:53731/api/login/';
 
 
-var titulo = document.querySelector('#titulo-medico');
-var especialidade = document.querySelector('#especialidade');
+var titulo = document.querySelector('#titulo-login');
+
 
 var elementosMedico = {
     nome: document.querySelector('#nome'),
-    cpf: document.querySelector('#cpf'),
-    crm: document.querySelector('#crm'),
-    especialidade: document.querySelector('#especialidade')
+    email: document.querySelector('#email'),
+    senha: document.querySelector('#senha'),
+    tipoAcesso: document.querySelector('#tipoAcesso')
 };
 
 var query = location.search.slice(1); // Pega as informações enviadas após o ponto de interrogação na URL
@@ -29,48 +29,48 @@ console.log(data);
 
 if(data.id) { // Se foi passado um id, quer dizer que eu estou alterando
     obterMedico(data.id);
-    titulo.innerHTML = 'Alterar Médico';
+    titulo.innerHTML = 'Alterar Login';
 }
 else{
     obterEspecialidades();
-    titulo.innerHTML = 'Adicionar Médico';
+    titulo.innerHTML = 'Adicionar Login';
 }
 
-document.querySelector('#form-medico').addEventListener('submit', function (event) {
+document.querySelector('#form-login').addEventListener('submit', function (event) {
 
     event.preventDefault();
 
-    var medico = {
-        nome: elementosMedico.nome.value,
-        cpf: elementosMedico.cpf.value,
-        crm: elementosMedico.crm.value,
-        idEspecialidade: parseInt(elementosMedico.especialidade.value)
+    var login = {
+        nome: elementosLogin.nome.value,
+        emial: elementosLogin.email.value,
+        senha: elementosLogin.senha.value,
+        tipoAcesso:elementosLogin.tipoAcesso.value
     };
 
     if(data.id){
-        alterarMedico(data.id, medico);
+        alterarlogin(data.id, login);
     }
     else{
-        inserirMedico(medico);
+        inserirLogin(login);
     }
 
 });
 
-function inserirMedico(medico) {
+function inserirMedico(login) {
 
     var request = new Request(api, {
         method: "POST",
         headers: new Headers({
             'Content-Type': 'application/json'
         }),
-        body: JSON.stringify(medico)
+        body: JSON.stringify(login)
     });
 
     fetch(request)
         .then(function (response) {
             console.log(response);
             if (response.status == 201) {
-                alert("Médico inserido com sucesso");
+                alert("Login inserido com sucesso");
                 atribuirValorAoFormulario();
             } else {
 		
@@ -87,22 +87,22 @@ function inserirMedico(medico) {
 
 }
 
-function alterarMedico(idMedico, medico) {
+function alterarlogin(idLogin, login) {
 
-    var request = new Request(api + idMedico, {
+    var request = new Request(api + idLogin, {
         method: "PUT",
         headers: new Headers({
             'Content-Type': 'application/json'
         }),
-        body: JSON.stringify(medico)
+        body: JSON.stringify(login)
     });
 
     fetch(request)
         .then(function (response) {
             // console.log(response);
             if (response.status == 202) {
-                alert("Médico alterado com sucesso");
-                window.location.href="medico.html";
+                alert("Login alterado com sucesso");
+               // window.location.href="login.html";
             } else {
 		response.json().then(function(message){
 			alert(message.error);
@@ -116,8 +116,8 @@ function alterarMedico(idMedico, medico) {
 
 }
 
-function obterMedico(idMedico) {
-    var request = new Request(api + idMedico, {
+function obterLogin(idLogin) {
+    var request = new Request(api + idLogin, {
         method: "GET",
         headers: new Headers({
             'Content-Type': 'application/json'
@@ -129,7 +129,7 @@ function obterMedico(idMedico) {
             // console.log(response);
             if (response.status == 200) {
                 response.json()
-                .then(function(medico){
+                .then(function(login){
                     atribuirValorAoFormulario(medico);
                     obterEspecialidades(medico.idEspecialidade);
                 });
