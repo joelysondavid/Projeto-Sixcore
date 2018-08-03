@@ -1,18 +1,18 @@
-var api = '';
+var api = 'http://localhost:53731/api/login/';
 
 var elementosForm = {
     login: document.querySelector('#login'),
     senha: document.querySelector('#senha')
 };
 
-document.querySelector('#login-link-cadastrar')
+/*document.querySelector('#login-link-cadastrar')
     .addEventListener('click', function (event) {
 
         event.preventDefault();
 
         alert("Aguardando implementação.");
 
-    });
+    });*/
 
 document.querySelector('#form-login')
     .addEventListener('submit', function (event) {

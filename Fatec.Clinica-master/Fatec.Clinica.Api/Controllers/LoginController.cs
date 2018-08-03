@@ -70,10 +70,10 @@ namespace Fatec.Clinica.Api.Controllers
         {
             var objLogin = new Login()
             {
-                TipoAcesso = input.TipoAcesso,
-                Senha = input.Senha,
+                Nome = input.Nome,
                 Email = input.Email,
-                Nome = input.Nome
+                Senha = input.Senha,
+                Tipo_Acesso = input.Tipo_Acesso                
             };
 
             var idLogin = _loginNegocio.Inserir(objLogin);
@@ -96,7 +96,7 @@ namespace Fatec.Clinica.Api.Controllers
         {
             var objLogin = new Login()
             {
-                TipoAcesso = input.TipoAcesso,
+                Tipo_Acesso = input.Tipo_Acesso,
                 Senha = input.Senha,
                 Email = input.Email,
                 Nome = input.Nome

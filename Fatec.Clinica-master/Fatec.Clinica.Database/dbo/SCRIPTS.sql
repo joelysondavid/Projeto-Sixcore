@@ -1,7 +1,61 @@
-﻿CREATE TABLE LOGIN_TB(
-ID INTEGER PRIMARY KEY NOT NULL,
+﻿use fatecclinica
+go
+CREATE TABLE LOGIN_TB(
+ID INT PRIMARY KEY NOT NULL Identity,
 NOME VARCHAR(150) NOT NULL,
 EMAIL VARCHAR(100) NOT NULL,
 SENHA VARCHAR(150) NOT NULL,
 TIPO_ACESSO VARCHAR(20) NOT NULL
+<<<<<<< HEAD
 )
+=======
+)
+DECLARE @ID int;
+INSERT INTO [LOGIN_TB] (NOME, EMAIL, SENHA, TIPO_ACESSO)
+VALUES ('mosafgom', 'i dont have idea', '00123', 'medico')
+SET @ID = SCOPE_IDENTITY();
+SELECT @ID
+
+select * from LOGIN_TB
+GO
+
+
+CREATE TABLE Paciente
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+    [Nome] VARCHAR(100) NOT NULL, 
+    [CPF] VARCHAR(11) NOT NULL, 
+    [Historico] VARCHAR(500) NOT NULL,
+	[Nascimento] VARCHAR(10) NOT NULL
+)
+go 
+
+CREATE TABLE Medico
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+	[IdEspecialidade] INT NOT NULL,
+    [Nome] VARCHAR(100) NOT NULL, 
+    [CPF] VARCHAR(11) NOT NULL, 
+    [CRM] VARCHAR(10) NOT NULL, 
+    CONSTRAINT [FK_Medico_Especialidade] FOREIGN KEY (IdEspecialidade) REFERENCES [Especialidade]([Id])
+)
+go
+
+
+CREATE TABLE Especialidade
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+	[Nome] VARCHAR(50) NOT NULL
+)
+
+CREATE TABLE Consulta
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+	[IdPaciente] INT NOT NULL,
+	[IdMedico] INT NOT NULL,
+	[IdEspecialidade] INT NOT NULL,
+	CONSTRAINT [FK_Consulta_Paciente] FOREIGN KEY (IdPaciente) REFERENCES [Paciente]([Id]),
+	CONSTRAINT [FK_Consulta_Medico] FOREIGN KEY (IdMedico) REFERENCES [Medico]([Id]),
+	CONSTRAINT [FK_Consulta_Especialidade] FOREIGN KEY (IdEspecialidade) REFERENCES [Especialidade]([Id])
+)
+>>>>>>> 1bcf98d8b386856729af878ead01c990771ae07d
