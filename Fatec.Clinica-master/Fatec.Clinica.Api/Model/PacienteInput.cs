@@ -5,8 +5,14 @@ using System.Threading.Tasks;
 
 namespace Fatec.Clinica.Api.Model
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class PacienteInput
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public string Nome { get; set; }
         public string Cpf { get; set; }
         public string Historico { get; set; }

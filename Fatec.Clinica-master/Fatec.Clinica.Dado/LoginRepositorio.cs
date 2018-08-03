@@ -7,7 +7,7 @@ using Fatec.Clinica.Dominio.Dto;
 
 namespace Fatec.Clinica.Dado
 {
-   public class LoginRepositorio
+    public class LoginRepositorio
     {
         /// <summary>
         /// 
@@ -17,15 +17,59 @@ namespace Fatec.Clinica.Dado
         {
             using (var connection = new SqlConnection(DbConnectionFactory.SQLConnectionString))
             {
-                var lista = connection.Query<LoginDto>($"SELECT L.Id, M.Nome, L.Email, L.TipoAcesso" +
-                                                        $"FROM [LOGIN_TB] M ");
+                var lista = connection.Query<LoginDto>($"SELECT L.ID, L.NOME, L.EMAIL, L.SENHA,L.TIPO_ACESSO" +
+                                                        $"FROM [LOGIN_TB] L ");
                 return lista;
             }
         }
-
+        /// <summary>
+        /// 
         /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public LoginDto SelecionarPorId(int id)
+        {
+            using (var connection = new SqlConnection(DbConnectionFactory.SQLConnectionString))
+            {
+                var obj = connection.QueryFirstOrDefault<LoginDto>($"SELECT L.ID, L.NOME, L.EMAIL, L.SENHA,L.TIPO_ACESSO" +
+                                                                 $"FROM [LOGIN_TB] L " +
+                                                                 $"WHERE L.ID = {id}");
+                return obj;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+       
+       
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public Login SelecionarPorEmail(string email)
+        {
+            using (var connection = new SqlConnection(DbConnectionFactory.SQLConnectionString))
+            {
+                var obj = connection.QueryFirstOrDefault<Login>($"SELECT * " +
+                                                                  $"FROM [LOGIN_TB] " +
+                                                                  $"WHERE EMAIL = {email}");
+                return obj;
+            }
+        }
+
+      
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// 
+        /// <summary>
+        /// 
         /// <param name="entity"></param>
         /// <returns></returns>
+        /// </summary>
         public int Inserir(Login entity)
         {
             using (var connection = new SqlConnection(DbConnectionFactory.SQLConnectionString))
@@ -35,6 +79,7 @@ namespace Fatec.Clinica.Dado
                                               $"(NOME,EMAIL,TIPO_ACESSO) " +
                                                     $"VALUES ({entity.Nome}," +
                                                             $"'{entity.Email}'," +
+                                                            $"'{entity.Senha}',"+
                                                             $"'{entity.TipoAcesso}'" +
                                               $"SET @ID = SCOPE_IDENTITY();" +
                                               $"SELECT @ID");
@@ -43,6 +88,37 @@ namespace Fatec.Clinica.Dado
 
         /// <summary>
         /// 
+        /// </summary>
+        /// 
+        /// <summary>
+        /// 
+        /// <param name="entity"></param>
+        ///    /// </summary>
+        public void Alterar(Login entity)
+        {
+            using (var connection = new SqlConnection(DbConnectionFactory.SQLConnectionString))
+            {
+                connection.Execute($"UPDATE [LOGIN_TB] " +
+                                   $"SET Nome = '{entity.Nome}', "  +
+                                   $"EMAIL = '{entity.Email}'," +
+                                   $"SENHA = '{entity.Senha}', " +
+                                   $"TIPO_ACESSO = '{entity.TipoAcesso}'"+
+                                   $"WHERE Id = {entity.Id}");
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        public void Deletar(int id)
+        {
+            using (var connection = new SqlConnection(DbConnectionFactory.SQLConnectionString))
+            {
+                connection.Execute($"DELETE " +
+                                   $"FROM [LOGIN_TB] " +
+                                   $"WHERE ID = {id}");
+            }
+        }
     }
-}
 }

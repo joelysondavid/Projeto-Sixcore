@@ -7,8 +7,14 @@ using Newtonsoft.Json;
 
 namespace Fatec.Clinica.Api.Filtros
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ErroFiltro
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public async Task Invoke(HttpContext context, Func<Task> next)
         {
             try

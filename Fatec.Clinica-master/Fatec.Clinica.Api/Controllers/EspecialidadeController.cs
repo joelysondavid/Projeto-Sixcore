@@ -8,6 +8,9 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Fatec.Clinica.Api.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Produces("application/json")]
     [Route("api/Especialidade")]
     public class EspecialidadeController : Controller

@@ -1,5 +1,8 @@
 ﻿namespace Fatec.Clinica.Api.Model
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ConsultaInput
     {
         public int idMedico { get; set; }

@@ -5,7 +5,15 @@ using System.Threading.Tasks;
 
 namespace Fatec.Clinica.Api.Model
 {
+
+    /// <summary>
+    /// 
+    /// </summary>
     public class LoginInput
     {
+        public string Nome { get; set; }
+        public string Email { get; set; }
+        public string Senha { get; set; }
+        public string TipoAcesso { get; set; }
     }
 }
