@@ -17,7 +17,7 @@ namespace Fatec.Clinica.Dado
         {
             using (var connection = new SqlConnection(DbConnectionFactory.SQLConnectionString))
             {
-                var lista = connection.Query<LoginDto>($"SELECT L.ID, L.NOME, L.EMAIL, L.SENHA,L.TIPO_ACESSO" +
+                var lista = connection.Query<LoginDto>($"SELECT L.ID, L.NOME, L.EMAIL, L.SENHA, L.TIPO_ACESSO " +
                                                         $"FROM [LOGIN_TB] L ");
                 return lista;
             }
@@ -31,7 +31,7 @@ namespace Fatec.Clinica.Dado
         {
             using (var connection = new SqlConnection(DbConnectionFactory.SQLConnectionString))
             {
-                var obj = connection.QueryFirstOrDefault<LoginDto>($"SELECT L.ID, L.NOME, L.EMAIL, L.SENHA,L.TIPO_ACESSO" +
+                var obj = connection.QueryFirstOrDefault<LoginDto>($"SELECT L.ID, L.NOME, L.EMAIL, L.SENHA,L.TIPO_ACESSO " +
                                                                  $"FROM [LOGIN_TB] L " +
                                                                  $"WHERE L.ID = {id}");
                 return obj;
@@ -54,7 +54,7 @@ namespace Fatec.Clinica.Dado
             {
                 var obj = connection.QueryFirstOrDefault<Login>($"SELECT * " +
                                                                   $"FROM [LOGIN_TB] " +
-                                                                  $"WHERE EMAIL = {email}");
+                                                                  $"WHERE EMAIL = '{email}'");
                 return obj;
             }
         }
@@ -76,11 +76,11 @@ namespace Fatec.Clinica.Dado
             {
                 return connection.QuerySingle<int>($"DECLARE @ID int;" +
                                               $"INSERT INTO [LOGIN_TB] " +
-                                              $"(NOME,EMAIL,TIPO_ACESSO) " +
-                                                    $"VALUES ({entity.Nome}," +
+                                              $"(NOME, EMAIL, SENHA, TIPO_ACESSO) " +
+                                                    $"VALUES ('{entity.Nome}'," +
                                                             $"'{entity.Email}'," +
                                                             $"'{entity.Senha}',"+
-                                                            $"'{entity.TipoAcesso}'" +
+                                                            $"'{entity.Tipo_Acesso}')" +
                                               $"SET @ID = SCOPE_IDENTITY();" +
                                               $"SELECT @ID");
             }
@@ -102,7 +102,7 @@ namespace Fatec.Clinica.Dado
                                    $"SET Nome = '{entity.Nome}', "  +
                                    $"EMAIL = '{entity.Email}'," +
                                    $"SENHA = '{entity.Senha}', " +
-                                   $"TIPO_ACESSO = '{entity.TipoAcesso}'"+
+                                   $"TIPO_ACESSO = '{entity.Tipo_Acesso}' "+
                                    $"WHERE Id = {entity.Id}");
             }
         }
