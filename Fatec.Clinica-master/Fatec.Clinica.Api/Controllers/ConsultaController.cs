@@ -27,7 +27,7 @@ namespace Fatec.Clinica.Api.Controllers
         {
             _consultaNegocio = new ConsultaNegocio();
         }
-
+        
         /// <summary>
         /// Método que obtem uma lista de Consultas
         /// </summary>
@@ -81,9 +81,11 @@ namespace Fatec.Clinica.Api.Controllers
         {
             var objConsulta = new Consulta()
             {
+                Data = input.data,
+                Hora = input.hora,
                 IdPaciente = input.idPaciente,
-                IdMedico = input.idMedico,
-                IdEspecialidade = input.idEspecialidade
+                IdMedico = input.idMedico,                               
+                TipoEspecialista = input.TipoEspecialista
             };
 
             var idConsulta = _consultaNegocio.Inserir(objConsulta);
@@ -106,8 +108,10 @@ namespace Fatec.Clinica.Api.Controllers
         {
             var objConsulta = new Consulta()
             {
+                Data = input.data,
+                Hora = input.hora,
                 IdMedico = input.idMedico,
-                IdEspecialidade = input.idEspecialidade
+                TipoEspecialista = input.TipoEspecialista
             };
 
             var obj = _consultaNegocio.Alterar(id, objConsulta);
