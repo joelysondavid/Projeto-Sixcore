@@ -9,7 +9,7 @@ namespace Fatec.Clinica.Api.Model
     {
         public string Nome { get; set; }
         public string Cpf { get; set; }
-        public int Crm { get; set; }
+        public string Crm { get; set; }
         public int IdEspecialidade { get; set; }
     }
 }

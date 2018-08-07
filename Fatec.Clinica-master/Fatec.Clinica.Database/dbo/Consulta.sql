@@ -3,7 +3,7 @@ CREATE TABLE Consulta
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
 	[Data] DATE NOT NULL,
-	[Hora] TIME('24:60') NOT NULL,
+	[Hora] TIME NOT NULL,
 	[IdPaciente] INT NOT NULL,
 	[IdMedico] INT NOT NULL,
 	[TipoEspecialista] INT NOT NULL,
@@ -13,6 +13,7 @@ CREATE TABLE Consulta
 )
 select * from medico
 select * from consulta
+select * from Especialidade
 select format(consulta.Data, 'd') from consulta
 
 set language 'brazilian'

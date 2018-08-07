@@ -3,6 +3,7 @@ var apiEspecialidade = 'http://localhost:53731/api/especialidade/';
 
 var titulo = document.querySelector('#titulo-medico');
 var especialidade = document.querySelector('#especialidade');
+var form1 = document.getElementById("form-medico");
 
 var elementosMedico = {
     nome: document.querySelector('#nome'),
@@ -185,6 +186,19 @@ function templateEspecialidades(especialidades = [], id = null){
         }
     `;
 }
+
+// masks
+$(document).ready(function(){
+    $('.cpf').mask('000.000.000-00');
+    $('.crm').mask('000000/AA');
+    $('.senha').mask('AAAAAAAA');
+    $('.data').mask('00-00-0000');
+    $('.time').mask('00:00:00');
+    $('.cep').mask('00000-000');
+    $('.telpes').mask('(00)00000-0000');
+    $('.telres').mask('(00)0000-0000');    
+    $('.valor').mask('000.000.000,00');
+  });
 
 function atribuirValorAoFormulario(medico = {}) {
     elementosMedico.nome.value = medico.nome || '';

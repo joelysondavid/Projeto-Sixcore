@@ -60,13 +60,13 @@
         </div>
     </nav>
 
-    <main role="main" class="container">
+    <main role="main" class="container text-center">
 
         <h2 class="mb-3" id="titulo-medico">
            
         </h2>
 
-        <form class="form" id="form-medico">
+        <form class="form" id="form-medico" >
 
             <div class="form-group">
                 <label for="nome">Nome</label>
@@ -74,13 +74,13 @@
             </div>
 
             <div class="form-group">
-                <label for="cpf">Cpf</label>
-                <input type="text" name="cpf" id="cpf" class="form-control">
+                <label for="cpf">CPF</label>
+                <input type="text" name="cpf" id="cpf" class="form-control cpf">
             </div>
 
             <div class="form-group">
-                <label for="crm">Crm</label>
-                <input type="text" name="crm" id="crm" class="form-control">
+                <label for="crm">CRM</label>
+                <input type="text" name="crm" id="crm"  placeholder="CRM" class="form-control crm">
             </div>
 
             <div class="form-group">
@@ -96,6 +96,7 @@
 
     </main>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
     <script src="medicoCriar.js"></script>
 </body>
 

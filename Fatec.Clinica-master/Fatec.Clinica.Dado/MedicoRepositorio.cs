@@ -67,7 +67,7 @@ namespace Fatec.Clinica.Dado
         /// </summary>
         /// <param name="crm"></param>
         /// <returns></returns>
-        public Medico SelecionarPorCrm(int crm)
+        public Medico SelecionarPorCrm(string crm)
         {
             using (var connection = new SqlConnection(DbConnectionFactory.SQLConnectionString))
             {
@@ -109,7 +109,7 @@ namespace Fatec.Clinica.Dado
                                                     $"VALUES ({entity.IdEspecialidade}," +
                                                             $"'{entity.Nome}'," +
                                                             $"'{entity.Cpf}'," +
-                                                            $"{entity.Crm})" +
+                                                            $"'{entity.Crm}')" +
                                               $"SET @ID = SCOPE_IDENTITY();" +
                                               $"SELECT @ID");
             }
