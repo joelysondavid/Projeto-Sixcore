@@ -8,7 +8,7 @@ namespace Fatec.Clinica.Api.Model
     public class ConsultaInput
     {
         public DateTime data { get; set; }
-        public string hora { get; set; }
+        public TimeSpan hora { get; set; }
         public int idPaciente { get; set; }
         public int idMedico { get; set; }
         public int TipoEspecialista { get; set; }

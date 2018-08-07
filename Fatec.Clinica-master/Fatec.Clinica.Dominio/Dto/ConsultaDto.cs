@@ -8,7 +8,7 @@ namespace Fatec.Clinica.Dominio.Dto
     {
         public int Id { get; set; }
         public DateTime Data { get; set; }
-        public string Hora { get; set; }
+        public TimeSpan Hora { get; set; }
         public string Paciente { get; set; }
         public string Medico { get; set; }
         public string Especialidade { get; set; }
